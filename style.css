@@ -5552,10 +5552,16 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   display: block; }
 
 .kk-header {
-  background-image: url(b499cbcc04bf6c90287f03086750c5f8.svg);
-  background-size: cover; }
+  text-align: center;
+  height: 100px;
+  background-image: url(6b502a4accab6269f491204c284c0efb.svg); }
+
+.kk-logo {
+  width: 200px;
+  height: 83px; }
 
 .kk-footer {
-  background-image: url(29607f4578ab898a0fc4102599a950a8.svg);
-  background-size: cover;
+  height: 50px;
+  background-image: url(51f084bee9e0dd2f6362636582eee620.svg);
+  background-size: contain;
   color: #fff; }

@@ -1,5 +1,6 @@
 .kk-footer {
+  height: 50px;
   background-image: url('../assets/images/footer-bg.svg');
-  background-size: cover;
+  background-size: contain;
   color: $white;
 }
