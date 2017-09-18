@@ -1,18 +1,7 @@
-@import "variables-site/variables-site";
-@import "mixins/mixins-master";
-@import "normalize";
-@import "typography/typography";
-@import "elements/elements";
-@import "forms/forms";
-@import "navigation/navigation";
-@import "modules/accessibility";
-@import "modules/alignments";
-@import "modules/clearings";
-@import "site/secondary/widgets";
-@import "site/site";
-@import "modules/infinite-scroll";
-@import "media/media";
+@import 'bootstrap/bootstrap';
+@import 'kinderklets/variables';
+@import 'kinderklets/global/state';
 
-html, body {
-  background-color: $kk-yellow;
-}
+// modules / conponents
+@import 'kinderklets/modules/header';
+@import 'kinderklets/modules/footer';

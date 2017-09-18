@@ -11,6 +11,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.svg$/,
+                loader: 'file-loader'
+            },
+            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     //fallback: 'style-loader',
@@ -22,5 +26,9 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('style.css')
-    ]
+    ],
+    watch: true,
+    watchOptions: {
+        poll: 1000
+    }
 };
