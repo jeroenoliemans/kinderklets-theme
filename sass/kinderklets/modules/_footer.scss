@@ -3,4 +3,47 @@
   background-image: url('../assets/images/footer-bg.svg');
   background-size: contain;
   color: $white;
+
+  //override link color in the footer
+  a {
+    color: $kk-yellow;
+    text-decoration: $link-decoration;
+
+    @include hover-focus {
+      color: $kk-yellow-hover;
+      text-decoration: $link-hover-decoration;
+    }
+  }
+}
+
+.menu-footer-navigation-container {
+  height: 100%;
+}
+
+.footer-navigation {
+  height: 100%;
+}
+
+#footer-navigation {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+
+  li {
+    &:after {
+      content:" ○ ";
+    }
+    margin-left: $kk-space-quarter;
+
+    &:last-child {
+
+      &:after {
+        content: none;
+      }
+    }
+  }
 }

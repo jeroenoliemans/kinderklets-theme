@@ -1,7 +1,10 @@
 .kk-header {
   text-align: center;
   height: 100px;
+  width:  100%;
   background-image: url('../assets/images/header-bg.svg');
+  z-index: $z-header;
+  position: fixed;
 }
 
 .kk-logo {

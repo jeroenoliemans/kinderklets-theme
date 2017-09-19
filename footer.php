@@ -10,21 +10,18 @@
  */
 
 ?>
-
+        </div><!-- #main bootstrap row -->
 	</div><!-- #content -->
 
 	<footer id="colophon" class="kk-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'kinderklets' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'kinderklets' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'kinderklets' ), 'kinderklets', '<a href="http://underscores.me/">Jeroen Oliemans</a>' );
-			?>
-		</div><!-- .site-info -->
+        <nav id="site-navigation" class="footer-navigation">
+            <?php
+            wp_nav_menu( array(
+                'theme_location' => 'footer-navigation',
+                'menu_id'        => 'footer-navigation',
+            ) );
+            ?>
+        </nav><!-- #site-navigation -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

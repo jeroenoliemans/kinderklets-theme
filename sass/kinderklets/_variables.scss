@@ -5,3 +5,21 @@ $kk-blue:   #1E4147;
 $kk-lightgreen: #AAC789;
 $kk-green: #437356;
 
+// hover colors
+$kk-red-hover: darken($kk-red, 30%);
+$kk-yellow-hover: darken($kk-yellow, 30%);
+$kk-blue-hover: darken($kk-blue, 30%);
+$kk-lightgreen-hover: darken($kk-lightgreen, 30%);
+$kk-green-hover: darken($kk-green, 30%);
+
+// z-indexes
+$z-navigation: 80;
+$z-header: 90;
+
+//margins
+$kk-space-quarter: $spacer/4;
+$kk-space-half: $spacer/2;
+$kk-space: $spacer;
+$kk-space-double: $spacer*2;
+
+

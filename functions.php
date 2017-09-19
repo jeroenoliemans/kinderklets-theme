@@ -44,7 +44,8 @@ if ( ! function_exists( 'kinderklets_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'kinderklets' ),
+			'main-navigation' => esc_html__( 'MainNavigation', 'kinderklets' ),
+            'footer-navigation' => esc_html__( 'FooterNavigation', 'kinderklets' ),
 		) );
 
 		/*
@@ -155,4 +156,10 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/**
+ * Kinderklets php includes into functions.
+ */
+require_once('kinderklets-includes/scriptsAndStyles.php');
+
 

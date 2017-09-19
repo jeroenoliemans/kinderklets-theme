@@ -14,14 +14,15 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="col-md-8 content-area">
 		<main id="main" class="site-main">
+
+        <p class="kk-intro">Kinderklets.nl is dè plek waar je terecht kunt om je zorgen en vragen over je kind te bespreken. Je vragen worden beantwoordt door een ervaren kinder GZ-psycholoog die ook moeder is van twee kinderen. lees meer</p>
 
 		<?php
 		if ( have_posts() ) :
 
 			if ( is_home() && ! is_front_page() ) : ?>
-<!--                TODO home introtext-->
 				<header>
 					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
 				</header>
@@ -51,7 +52,9 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
+    <div class="col-md-4">
+        <?php get_sidebar(); ?>
+    </div>
 
-<?php
-get_sidebar();
-get_footer();
+
+<?php get_footer(); ?>

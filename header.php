@@ -25,14 +25,18 @@
 	<a class="skip-link screen-reader-text is-none" href="#content"><?php esc_html_e( 'Skip to content', 'kinderklets' ); ?></a>
 
 	<header id="masthead" class="kk-header">
-        <img class="kk-logo" src="/wp-content/themes/kinderklets/assets/images/kinderklets-logo.svg"  alt="Kinderklets.nl logo">
+        <a href="" class="kk-menu-toggle js-menu-toggle hidden-md-up">Menu</a>
+        <a href="/" title="home">
+            <img class="kk-logo" src="/wp-content/themes/kinderklets/assets/images/kinderklets-logo.svg"  alt="Kinderklets.nl logo">
+        </a>
 	</header><!-- #masthead -->
     <nav id="site-navigation" class="main-navigation">
         <?php
         wp_nav_menu( array(
-            'theme_location' => 'menu-1',
-            'menu_id'        => 'primary-menu',
+            'theme_location' => 'main-navigation',
+            'menu_id'        => 'main-navigation',
         ) );
         ?>
     </nav><!-- #site-navigation -->
-	<div id="content" class="site-content">
+	<div id="content" class="site-content container">
+        <div class="row">
