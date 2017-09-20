@@ -30,13 +30,22 @@
             <img class="kk-logo" src="/wp-content/themes/kinderklets/assets/images/kinderklets-logo.svg"  alt="Kinderklets.nl logo">
         </a>
 	</header><!-- #masthead -->
-    <nav id="site-navigation" class="main-navigation">
+    <nav id="site-navigation" class="main-navigation d-block d-md-none">
         <?php
         wp_nav_menu( array(
             'theme_location' => 'main-navigation',
-            'menu_id'        => 'main-navigation',
+            'menu_id'        => 'main-navigation-mobile',
         ) );
         ?>
-    </nav><!-- #site-navigation -->
+    </nav><!-- #site-navigation on mobile -->
+
 	<div id="content" class="site-content container">
         <div class="row">
+            <nav id="site-navigation" class="main-navigation-desktop d-none d-md-block">
+                <?php
+                wp_nav_menu( array(
+                    'theme_location' => 'main-navigation',
+                    'menu_id'        => 'main-navigation-desktop',
+                ) );
+                ?>
+            </nav><!-- #site-navigation on desktop -->

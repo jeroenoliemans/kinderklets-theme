@@ -12,6 +12,13 @@ $kk-blue-hover: darken($kk-blue, 30%);
 $kk-lightgreen-hover: darken($kk-lightgreen, 30%);
 $kk-green-hover: darken($kk-green, 30%);
 
+// breakpoints from bootstrap
+$xs-0: 0;
+$sm-576: 576px;
+$md-768: 768px;
+$lg-992: 992px;
+$xl-1200: 1200px;
+
 // z-indexes
 $z-navigation: 80;
 $z-header: 90;

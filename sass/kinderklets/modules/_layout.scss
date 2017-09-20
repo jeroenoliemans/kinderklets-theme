@@ -1,3 +1,7 @@
 .content-area {
   margin-top: 120px;
+
+  @media only screen and (min-width: $md-768) {
+    margin-top: 0px;
+  }
 }

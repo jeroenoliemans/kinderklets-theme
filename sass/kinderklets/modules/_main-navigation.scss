@@ -11,7 +11,7 @@
 }
 
 .main-navigation {
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: $z-navigation;
   background-color: $kk-green;
@@ -27,7 +27,7 @@
   transform: translate(0%, 30%);
 }
 
-#main-navigation {
+#main-navigation-mobile {
   list-style: none;
 
   //override link color in the footer
@@ -37,6 +37,29 @@
 
     @include hover-focus {
       color: $kk-lightgreen;
+      text-decoration: $link-hover-decoration;
+    }
+  }
+}
+
+// Desktop nvaigation
+.main-navigation-desktop {
+  width: 100%;
+  position: relative;
+  transform: none;
+}
+
+#main-navigation-desktop {
+  list-style: none;
+  display: flex;
+
+  //override link color in the footer
+  a {
+    color: $kk-green;
+    text-decoration: $link-decoration;
+
+    @include hover-focus {
+      color: $kk-green-hover;
       text-decoration: $link-hover-decoration;
     }
   }

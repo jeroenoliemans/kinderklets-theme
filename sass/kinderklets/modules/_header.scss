@@ -4,7 +4,11 @@
   width:  100%;
   background-image: url('../assets/images/header-bg.svg');
   z-index: $z-header;
-  position: fixed;
+  position: absolute;
+
+  @media only screen and (min-width: $md-768) {
+    position: relative;
+  }
 }
 
 .kk-logo {
