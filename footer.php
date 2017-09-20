@@ -12,8 +12,10 @@
 ?>
         </div><!-- #main bootstrap row -->
 	</div><!-- #content -->
+</div><!-- #page -->
 
-	<footer id="colophon" class="kk-footer">
+<footer class="kk-footer">
+    <div class="kk-footer-navigation">
         <nav id="site-navigation" class="footer-navigation">
             <?php
             wp_nav_menu( array(
@@ -22,8 +24,14 @@
             ) );
             ?>
         </nav><!-- #site-navigation -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+    </div><!-- #colophon -->
+    <div class="kk-footer-meta">
+        <div class="container text-center">
+            kvk btw iban <a href="mailto:info@kinderklets.nl">info@kinderklets.nl</a>
+        </div>
+    </div>
+</footer>
+
 
 <?php wp_footer(); ?>
 

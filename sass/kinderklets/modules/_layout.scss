@@ -1,3 +1,13 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  //sticky footer
+  margin-bottom: 110px;
+}
+
 .content-area {
   margin-top: 120px;
 

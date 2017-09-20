@@ -1,3 +1,25 @@
+// override heading font family
+h1, h2, h3, h4 {
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-weight: normal;
+  color: $kk-green;
+
+  //override link color in the footer
+  a {
+    color: $kk-green;
+    text-decoration: $link-decoration;
+
+    @include hover-focus {
+      color: $kk-green-hover;
+      text-decoration: $link-hover-decoration;
+    }
+  }
+}
+
+h1 {
+  font-weight: bold;
+}
+
 .kk-intro {
   font-family: 'Annie Use Your Telescope', cursive;
   font-size: 1.7rem;

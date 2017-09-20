@@ -1,8 +1,10 @@
 .kk-footer {
-  height: 50px;
-  background-image: url('../assets/images/footer-bg.svg');
-  background-size: contain;
-  color: $white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  color: $kk-yellow;
 
   //override link color in the footer
   a {
@@ -14,6 +16,13 @@
       text-decoration: $link-hover-decoration;
     }
   }
+}
+
+.kk-footer-navigation {
+  height: 50px;
+  background-image: url('../assets/images/footer-bg.svg');
+  background-size: contain;
+  color: $white;
 }
 
 .menu-footer-navigation-container {
@@ -46,4 +55,9 @@
       }
     }
   }
+}
+
+.kk-footer-meta {
+  height: 50px;
+  background-color: $kk-blue;
 }

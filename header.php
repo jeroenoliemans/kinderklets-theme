@@ -25,7 +25,7 @@
 	<a class="skip-link screen-reader-text is-none" href="#content"><?php esc_html_e( 'Skip to content', 'kinderklets' ); ?></a>
 
 	<header id="masthead" class="kk-header">
-        <a href="" class="kk-menu-toggle js-menu-toggle hidden-md-up">Menu</a>
+        <a href="" class="kk-menu-toggle js-menu-toggle hidden-md-up"><i class="icon-menu kk-toggle-icon"></i></a>
         <a href="/" title="home">
             <img class="kk-logo" src="/wp-content/themes/kinderklets/assets/images/kinderklets-logo.svg"  alt="Kinderklets.nl logo">
         </a>
