@@ -161,5 +161,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  * Kinderklets php includes into functions.
  */
 require_once('kinderklets-includes/scriptsAndStyles.php');
+require_once('kinderklets-includes/customPostTypeQuestion.php');
 
 
