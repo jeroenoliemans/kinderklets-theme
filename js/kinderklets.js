@@ -13,6 +13,48 @@ function isHidden(el) {
     return (style.display === 'none')
 }
 
+function toggleLoader(){
+    console.log('toggle loader');
+}
+
+function adminAjaxRequest(formdata, action) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: kinderkletsData.adminAjax,
+        data: {
+            action: action,
+            data: formdata,
+            security: kinderkletsData.security
+        }
+            .done(function(response) {
+                if(response.succes){
+                    alert('succes');
+                } else {
+                    alert('fail');
+                }
+            })
+            .fail(function(error){
+
+            })
+            .always(toggleLoader)
+    });
+
+}
+
+//setup ajax handler for form
+function setupAjax() {
+    userSubmitButton = document.getElementById('questionSubmit')
+
+    userSubmitButton.addEventListener('click', function(event) {
+       event.preventDefault();
+
+       var formData = {
+
+       }
+    });
+}
+
 function toggleMainMenu(event) {
     event.preventDefault();
     if( !menuVisible ) {
@@ -22,5 +64,8 @@ function toggleMainMenu(event) {
     }
     menuVisible = !menuVisible;
 }
-
 menuToggle.addEventListener('click', toggleMainMenu);
+
+if(jQuery('#user-post').length > 0) {
+    setupAjax();
+}

@@ -21,6 +21,13 @@ $kinderklets_labels = array(
     'not_found_in_trash'  => __( 'Not found in Trash', 'kinderklets' ),
 );
 
+/*
+ * Helper functions
+ */
+function empty_str( $str ) {
+    return ! isset( $str ) || $str === "";
+}
+
 
 /*
  * Kinderklets custom post type Vraag
@@ -65,18 +72,18 @@ function kinderklets_custom_post_type($customLabels) {
  */
 function kinderklets_custom_fields(WP_Post $post) {
     add_meta_box('question_meta', 'Vraag Details', function() use ($post) {
-        $field_name = 'questionAge';
-        $field_value = get_post_meta($post->ID, $field_name, true);
+        $field_name_age = 'questionAge';
+        $field_value_age = get_post_meta($post->ID, $field_name_age, true);
         wp_nonce_field('kinderklets_nonce', 'kinderklets_nonce');
         ?>
         <table class="form-table">
             <tr>
-                <th> <label for="<?php echo $field_name; ?>">Leeftijd kind</label></th>
+                <th> <label for="<?php echo $field_name_age; ?>">Leeftijd kind</label></th>
                 <td>
-                    <input id="<?php echo $field_name; ?>"
-                           name="<?php echo $field_name; ?>"
+                    <input id="<?php echo $field_name_age; ?>"
+                           name="<?php echo $field_name_age; ?>"
                            type="text"
-                           value="<?php echo esc_attr($field_value); ?>"
+                           value="<?php echo esc_attr($field_value_age); ?>"
                     />
                 </td>
             </tr>
@@ -109,6 +116,36 @@ function kinderklets_create_meta_box() {
     ];
     register_post_type( $type, $arguments);
 }
+
+add_action('save_post', function($post_id){
+    $post = get_post($post_id);
+    $is_revision = wp_is_post_revision($post_id);
+    $field_name_age = 'questionAge';
+
+    // Do not save meta for a revision or on autosave
+    if ( $post->post_type != 'question' || $is_revision )
+        return;
+
+    // Do not save meta if fields are not present,
+    // like during a restore.
+    if( !isset($_POST[$field_name_age]) )
+        return;
+
+    // Secure with nonce field check
+    if( ! check_admin_referer('kinderklets_nonce', 'kinderklets_nonce') )
+        return;
+
+    // Clean up data
+    $field_value_age = trim($_POST[$field_name_age]);
+
+    // Do the saving and deleting
+    if( ! empty_str( $field_value_age ) ) {
+        update_post_meta($post_id, $field_name_age, $field_value_age);
+    } elseif( empty_str( $field_value_age ) ) {
+        delete_post_meta($post_id, $field_name_age);
+    }
+});
+
 
 /*
 * init hooks

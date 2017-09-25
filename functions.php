@@ -123,11 +123,17 @@ function kinderklets_scripts() {
 	wp_enqueue_script( 'kinderklets-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'kinderklets-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+    // create object for javascript usage
+    wp_localize_script( 'kinderklets-skip-link-focus-fix', 'kinderkletsData', array(
+        'adminAjax' =>  admin_url('admin-ajax.php'),
+        'security' => wp_create_nonce('kinderklets')
+    ));
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'kinderklets_scripts' );
 
 /**

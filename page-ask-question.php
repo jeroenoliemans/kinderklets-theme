@@ -25,97 +25,99 @@ get_header(); ?>
 			?>
 
             <!-- start of the question form-->
-            <fieldset class="form-group">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPublic" value="public">
-                        Mijn vraag en het antwoord mogen worden gebruikt door kinderklets.nl .
+            <form action="" id="user-post">
+                <?php wp_nonce_field('kinderklets_nonce', 'kinderklets_nonce'); ?>
+                <fieldset class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPublic" value="public">
+                            Mijn vraag en het antwoord mogen worden gebruikt door kinderklets.nl .
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPrivate" value="private">
+                            Mijn vraag en het antwoord zijn priv&eacute; en mogen niet worden gebruikt door kinderklets.nl, ik betaal voor het advies/antwoord &euro;19,95 .
+                        </label>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <textarea class="form-control" id="questionQuestion" rows="4" placeholder="Stel je vraag hier..."></textarea>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-md-12 col-form-label" for="questionEmail">Email adres</label>
+                    <div class="col-lg-9 col-md-12">
+                        <input type="email" class="form-control" id="questionEmail" aria-describedby="emailHelp" placeholder="email adres">
+                        <small id="emailHelp" class="form-text text-muted">Om je eventueel een extra vraag te stellen, om tot een goed atwoord te komen.</small>
+                    </div>
+                </div>
+
+                <hr />
+
+                <p class="text-muted">
+                    Onderstaande vragen worden gebruikt voor het advies maar verschijnen niet op de site
+                </p>
+
+                <div class="form-group row">
+                    <label for="questionAge" class="col-lg-3 col-md-12 col-form-label">Leeftijd kind</label>
+                    <div class="col-lg-9 col-md-12">
+                        <input class="form-control" type="number" value="" id="questionAge">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-lg-3 col-md-12 col-form-label">Geslacht kind</label>
+                    <div class="col-lg-9 col-md-12">
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexMale" value="option1"> mannelijk
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexFemale" value="option2"> vrouwelijk
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-md-12 col-form-label" for="questionSchool">Schooltype</label>
+                    <div class="col-lg-9 col-md-12">
+                        <select class="form-control" id="questionSchool">
+                            <option>Regulier</option>
+                            <option>Speciaal</option>
+                            <option>Groep</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-md-12 col-form-label" for="questionSchool">Opgroeiend in</label>
+                    <div class="col-lg-9 col-md-12">
+                        <select class="form-control" id="questionSchool">
+                            <option>&Eacute;&eacute;n ouder gezin</option>
+                            <option>Beide ouders gezin</option>
+                            <option>Samengesteld gezin</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-lg-3 col-md-12 col-form-label">Samenstelling gezin
                     </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPrivate" value="private">
-                        Mijn vraag en het antwoord zijn priv&eacute; en mogen niet worden gebruikt door kinderklets.nl, ik betaal voor het advies/antwoord &euro;19,95 .
-                    </label>
-                </div>
-            </fieldset>
-            <div class="form-group">
-                <textarea class="form-control" id="questionQuestion" rows="4" placeholder="Stel je vraag hier..."></textarea>
-            </div>
-            <div class="form-group row">
-                <label class="col-lg-3 col-md-12 col-form-label" for="questionEmail">Email adres</label>
-                <div class="col-lg-9 col-md-12">
-                    <input type="email" class="form-control" id="questionEmail" aria-describedby="emailHelp" placeholder="email adres">
-                    <small id="emailHelp" class="form-text text-muted">Om je eventueel een extra vraag te stellen, om tot een goed atwoord te komen.</small>
-                </div>
-            </div>
-
-            <hr />
-
-            <p class="text-muted">
-                Onderstaande vragen worden gebruikt voor het advies maar verschijnen niet op de site
-            </p>
-
-            <div class="form-group row">
-                <label for="questionAge" class="col-lg-3 col-md-12 col-form-label">Leeftijd kind</label>
-                <div class="col-lg-9 col-md-12">
-                    <input class="form-control" type="number" value="" id="questionAge">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-lg-3 col-md-12 col-form-label">Geslacht kind</label>
-                <div class="col-lg-9 col-md-12">
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="questionSex" id="questionSexMale" value="option1"> mannelijk
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="questionSex" id="questionSexFemale" value="option2"> vrouwelijk
-                        </label>
+                    <div class="col-lg-9 col-md-12">
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsNone" value="option1"> enig kind
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsMultiple" value="option2"> &eacute;&eacute;n of meerdere broers zussen
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-lg-3 col-md-12 col-form-label" for="questionSchool">Schooltype</label>
-                <div class="col-lg-9 col-md-12">
-                    <select class="form-control" id="questionSchool">
-                        <option>Regulier</option>
-                        <option>Speciaal</option>
-                        <option>Groep</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-lg-3 col-md-12 col-form-label" for="questionSchool">Opgroeiend in</label>
-                <div class="col-lg-9 col-md-12">
-                    <select class="form-control" id="questionSchool">
-                        <option>&Eacute;&eacute;n ouder gezin</option>
-                        <option>Beide ouders gezin</option>
-                        <option>Samengesteld gezin</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-lg-3 col-md-12 col-form-label">Samenstelling gezin
-                </label>
-                <div class="col-lg-9 col-md-12">
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsNone" value="option1"> enig kind
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsMultiple" value="option2"> &eacute;&eacute;n of meerdere broers zussen
-                        </label>
-                    </div>
-                </div>
-            </div>
 
-            <button type="submit" id="questionSubmit" class="btn btn-primary">Verstuur je vraag</button>
-
+                <button type="submit" id="questionSubmit" class="btn btn-primary">Verstuur je vraag</button>
+            </form>
             <!-- #start of the question form-->
 
 
