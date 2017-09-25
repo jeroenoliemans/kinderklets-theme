@@ -169,4 +169,33 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 require_once('kinderklets-includes/scriptsAndStyles.php');
 require_once('kinderklets-includes/customPostTypeQuestion.php');
 
+/**
+ * Kinderklets process question
+ */
+function kinderklets_process_question_post() {
+    if(! check_ajax_referer('user-submitted-question', 'security')) {
+        wp_send_json_error('security check failed');
+    }
+
+    $question_data = array(
+        'post_title' => sanitize_text_field($_POST[data][questionQuestion]),
+        'post_status' => 'draft',
+        'post_type' => 'question'
+    );
+
+    $post_id = wp_insert_post($question_data, true);
+
+    //update custom fields
+    $field_name_age = 'questionAge';
+
+    if($post_id) {
+        update_post_meta($post_id, $field_name_age, sanitize_text_field($_POST[data][questionAge]));
+    }
+
+    wp_send_json_success($post_id);
+}
+
+add_action('wp_ajax_kinderklets_process_question_post', 'kinderklets_process_question_post');
+add_action('wp_ajax_nopriv_kinderklets_process_question_post', 'kinderklets_process_question_post');
+
 

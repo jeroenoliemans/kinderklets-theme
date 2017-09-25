@@ -69,12 +69,12 @@ get_header(); ?>
                     <div class="col-lg-9 col-md-12">
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexMale" value="option1"> mannelijk
+                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexMale" value="male"> mannelijk
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexFemale" value="option2"> vrouwelijk
+                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexFemale" value="female"> vrouwelijk
                             </label>
                         </div>
                     </div>
