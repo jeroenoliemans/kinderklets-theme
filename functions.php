@@ -168,12 +168,14 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 require_once('kinderklets-includes/scriptsAndStyles.php');
 require_once('kinderklets-includes/customPostTypeQuestion.php');
+require_once('kinderklets-includes/customShortCodes.php');
 
 /**
  * Kinderklets process question
  */
 function kinderklets_process_question_post() {
-    if(! check_ajax_referer('user-submitted-question', 'security')) {
+
+    if(! check_ajax_referer('kinderklets_nonce', 'security')) {
         wp_send_json_error('security check failed');
     }
 

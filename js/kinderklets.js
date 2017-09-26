@@ -25,11 +25,11 @@ jQuery(function($) {
             data: {
                 action: action,
                 data: formdata,
-                security: kinderkletsData.security
+                security: document.getElementById('kinderklets_nonce').value
             }
         })
             .done(function (response) {
-                if (response.succes) {
+                if (response.success) {
                     alert('succes');
                 } else {
                     alert('fail');

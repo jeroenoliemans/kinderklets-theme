@@ -19,6 +19,9 @@ get_header(); ?>
 
         <p class="kk-intro">Kinderklets.nl is dè plek waar je terecht kunt om je zorgen en vragen over je kind te bespreken. Je vragen worden beantwoordt door een ervaren kinder GZ-psycholoog die ook moeder is van twee kinderen. lees meer</p>
 
+        <h2>De laatste vragen</h2>
+        <?php echo do_shortcode('[getlatestquestion]'); ?>
+
 		<?php
 		if ( have_posts() ) :
 
@@ -46,7 +49,7 @@ get_header(); ?>
 
 		else :
 
-			get_template_part( 'template-parts/content', 'none' );
+			//get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
 
