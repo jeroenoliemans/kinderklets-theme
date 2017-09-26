@@ -16,9 +16,16 @@ get_header(); ?>
 
 	<div id="primary" class="col-md-8 content-area">
 		<main id="main" class="site-main">
-
-        <p class="kk-intro">Kinderklets.nl is dè plek waar je terecht kunt om je zorgen en vragen over je kind te bespreken. Je vragen worden beantwoordt door een ervaren kinder GZ-psycholoog die ook moeder is van twee kinderen. lees meer</p>
-
+            <div class="card">
+                <div class="card-block">
+                    <p class="kk-intro">Kinderklets.nl is dè plek waar je terecht kunt om je zorgen en vragen over je kind te bespreken. Je vragen worden beantwoordt door een ervaren kinder GZ-psycholoog die ook moeder is van twee kinderen.</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-primary">Lees meer</a>
+                        <p class="kk-intro kk-intro-small">of</p>
+                        <a href="#" class="btn btn-primary">Stel een vraag</a>
+                    </div>
+                </div>
+            </div>
         <h2>De laatste vragen</h2>
         <?php echo do_shortcode('[getlatestquestion]'); ?>
 
