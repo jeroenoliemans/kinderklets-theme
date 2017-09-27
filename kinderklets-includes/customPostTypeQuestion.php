@@ -72,13 +72,32 @@ function kinderklets_custom_post_type($customLabels) {
  */
 function kinderklets_custom_fields(WP_Post $post) {
     add_meta_box('question_meta', 'Vraag Details', function() use ($post) {
+
+        // all the field variables
         $field_name_age = 'questionAge';
         $field_value_age = get_post_meta($post->ID, $field_name_age, true);
+        $field_name_question_full = 'questionFullQuestion';
+        $field_value_question_full =get_post_meta($post->ID, $field_name_question_full, true);
+
         wp_nonce_field('kinderklets_nonce', 'kinderklets_nonce');
+
         ?>
         <table class="form-table">
             <tr>
-                <th> <label for="<?php echo $field_name_age; ?>">Leeftijd kind</label></th>
+                <th>
+                    <label for="<?php echo $field_name_question_full; ?>">Volledige vraag</label>
+                </th>
+                <td>
+                    <textarea rows="4" id="<?php echo $field_name_question_full; ?>"
+                           name="<?php echo $field_name_question_full; ?>">
+                        <?php echo $field_value_question_full; ?>
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="<?php echo $field_name_age; ?>">Leeftijd kind</label>
+                </th>
                 <td>
                     <input id="<?php echo $field_name_age; ?>"
                            name="<?php echo $field_name_age; ?>"
@@ -120,29 +139,39 @@ function kinderklets_create_meta_box() {
 add_action('save_post', function($post_id){
     $post = get_post($post_id);
     $is_revision = wp_is_post_revision($post_id);
+
     $field_name_age = 'questionAge';
+    $field_name_question_full = 'questionFullQuestion';
 
     // Do not save meta for a revision or on autosave
     if ( $post->post_type != 'question' || $is_revision )
         return;
 
-    // Do not save meta if fields are not present,
-    // like during a restore.
-    if( !isset($_POST[$field_name_age]) )
-        return;
-
     // Secure with nonce field check
-    if( ! check_admin_referer('kinderklets_nonce', 'kinderklets_nonce') )
+    if (isset($_REQUEST['kinderklets_nonce'])) {
+        check_admin_referer('kinderklets_nonce', 'kinderklets_nonce');
+    }
+
+        // Do not save meta if all fields are not present,
+    // like during a restore.
+    if( !isset($_POST[$field_name_age]) || !isset($_POST[$field_name_question_full]) )
         return;
 
     // Clean up data
     $field_value_age = trim($_POST[$field_name_age]);
+    $field_value_question_full = trim($_POST[$field_name_question_full]);
 
     // Do the saving and deleting
     if( ! empty_str( $field_value_age ) ) {
         update_post_meta($post_id, $field_name_age, $field_value_age);
     } elseif( empty_str( $field_value_age ) ) {
         delete_post_meta($post_id, $field_name_age);
+    }
+
+    if( ! empty_str( $field_value_question_full ) ) {
+        update_post_meta($post_id, $field_name_question_full, $field_value_question_full);
+    } elseif( empty_str( $field_value_question_full ) ) {
+        delete_post_meta($post_id, $field_name_question_full);
     }
 });
 

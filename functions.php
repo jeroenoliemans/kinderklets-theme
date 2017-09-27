@@ -189,9 +189,11 @@ function kinderklets_process_question_post() {
 
     //update custom fields
     $field_name_age = 'questionAge';
+    $field_name_question_full = 'questionFullQuestion';
 
     if($post_id) {
         update_post_meta($post_id, $field_name_age, sanitize_text_field($_POST[data][questionAge]));
+        update_post_meta($post_id, $field_name_question_full, sanitize_text_field($_POST[data][questionQuestion]));
     }
 
     wp_send_json_success($post_id);
