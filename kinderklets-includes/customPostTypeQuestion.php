@@ -87,10 +87,13 @@ function kinderklets_custom_fields(WP_Post $post) {
                 <th>
                     <label for="<?php echo $field_name_question_full; ?>">Volledige vraag</label>
                 </th>
-                <td>
-                    <textarea rows="4" id="<?php echo $field_name_question_full; ?>"
-                           name="<?php echo $field_name_question_full; ?>">
-                        <?php echo $field_value_question_full; ?>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea rows="4" style="width: 100%;" id="<?php echo $field_name_question_full; ?>"
+                              name="<?php echo $field_name_question_full; ?>">
+                        <?php echo trim($field_value_question_full); ?>
                     </textarea>
                 </td>
             </tr>
