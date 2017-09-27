@@ -48,7 +48,7 @@ get_header(); ?>
                     <label class="col-lg-3 col-md-12 col-form-label" for="questionEmail">Email adres</label>
                     <div class="col-lg-9 col-md-12">
                         <input type="email" class="form-control" id="questionEmail" aria-describedby="emailHelp" placeholder="email adres">
-                        <small id="emailHelp" class="form-text text-muted">Om je eventueel een extra vraag te stellen, om tot een goed atwoord te komen.</small>
+                        <small id="emailHelp" class="form-text text-muted">Om je eventueel een extra vraag te stellen, om tot een goed antwoord te komen.</small>
                     </div>
                 </div>
 
@@ -83,19 +83,19 @@ get_header(); ?>
                     <label class="col-lg-3 col-md-12 col-form-label" for="questionSchool">Schooltype</label>
                     <div class="col-lg-9 col-md-12">
                         <select class="form-control" id="questionSchool">
-                            <option>Regulier</option>
-                            <option>Speciaal</option>
-                            <option>Groep</option>
+                            <option value="regulier">Regulier</option>
+                            <option value="speciaal">Speciaal</option>
+                            <option value="groep">Groep</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-lg-3 col-md-12 col-form-label" for="questionSchool">Opgroeiend in</label>
+                    <label class="col-lg-3 col-md-12 col-form-label" for="questionFamily">Opgroeiend in</label>
                     <div class="col-lg-9 col-md-12">
-                        <select class="form-control" id="questionSchool">
-                            <option>&Eacute;&eacute;n ouder gezin</option>
-                            <option>Beide ouders gezin</option>
-                            <option>Samengesteld gezin</option>
+                        <select class="form-control" id="questionFamily">
+                            <option value="1 ouder gzin">&Eacute;&eacute;n ouder gezin</option>
+                            <option value="beide ouders">Beide ouders gezin</option>
+                            <option value="Samengesteld gezin">Samengesteld gezin</option>
                         </select>
                     </div>
                 </div>
@@ -105,12 +105,12 @@ get_header(); ?>
                     <div class="col-lg-9 col-md-12">
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsNone" value="option1"> enig kind
+                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsNone" value="enig kind"> enig kind
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsMultiple" value="option2"> &eacute;&eacute;n of meerdere broers zussen
+                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsMultiple" value="niet enig kind"> &eacute;&eacute;n of meerdere broers zussen
                             </label>
                         </div>
                     </div>

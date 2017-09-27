@@ -75,9 +75,15 @@ function kinderklets_custom_fields(WP_Post $post) {
 
         // all the field variables
         $field_name_age = 'questionAge';
+        $field_name_email = 'questionEmail';
+        $field_name_privacy = 'questionPrivacy';
+        $field_name_sex = 'questionSex';
+        $field_name_family = 'questionFamily';
+        $field_name_school = 'questionSchool';
+        $field_name_siblings = 'questionSiblings';
+
+        $field_value_email =get_post_meta($post->ID, $field_name_email, true);
         $field_value_age = get_post_meta($post->ID, $field_name_age, true);
-        $field_name_question_full = 'questionFullQuestion';
-        $field_value_question_full =get_post_meta($post->ID, $field_name_question_full, true);
 
         wp_nonce_field('kinderklets_nonce', 'kinderklets_nonce');
 
@@ -85,30 +91,65 @@ function kinderklets_custom_fields(WP_Post $post) {
         <table class="form-table">
             <tr>
                 <th>
-                    <label for="<?php echo $field_name_question_full; ?>">Volledige vraag</label>
+                    <label>Privacy / betaald</label>
                 </th>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea rows="4" style="width: 100%;" id="<?php echo $field_name_question_full; ?>"
-                              name="<?php echo $field_name_question_full; ?>">
-                        <?php echo trim($field_value_question_full); ?>
-                    </textarea>
-                </td>
+                <td><?php echo get_post_meta($post->ID, $field_name_privacy, true); ?></td>
             </tr>
             <tr>
                 <th>
-                    <label for="<?php echo $field_name_age; ?>">Leeftijd kind</label>
+                    <label>Volledige vraag</label>
                 </th>
-                <td>
-                    <input id="<?php echo $field_name_age; ?>"
-                           name="<?php echo $field_name_age; ?>"
-                           type="text"
-                           value="<?php echo esc_attr($field_value_age); ?>"
-                    />
-                </td>
+                <td><?php echo get_the_title($post); ?></td>
             </tr>
+            <tr>
+                <th>
+                    <label>E-mailadres</label>
+                </th>
+                <td><?php echo get_post_meta($post->ID, $field_name_email, true); ?></td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Leeftijd kind</label>
+                </th>
+                <td><?php echo get_post_meta($post->ID, $field_name_age, true); ?></td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Geslacht kind</label>
+                </th>
+                <td><?php echo get_post_meta($post->ID, $field_name_sex, true); ?></td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Schooltype</label>
+                </th>
+                <td><?php echo get_post_meta($post->ID, $field_name_school, true); ?></td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Opgroeiend in</label>
+                </th>
+                <td><?php echo get_post_meta($post->ID, $field_name_family, true); ?></td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Samenstelling gezin</label>
+                </th>
+                <td><?php echo get_post_meta($post->ID, $field_name_siblings, true); ?></td>
+            </tr>
+
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <label for="--><?php //echo $field_name_age; ?><!--">Leeftijd kind</label>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <input id="--><?php //echo $field_name_age; ?><!--"-->
+<!--                           name="--><?php //echo $field_name_age; ?><!--"-->
+<!--                           type="text"-->
+<!--                           value="--><?php //echo esc_attr($field_value_age); ?><!--"-->
+<!--                    />-->
+<!--                </td>-->
+<!--            </tr>-->
         </table>
         <?php
     });
@@ -139,44 +180,44 @@ function kinderklets_create_meta_box() {
     register_post_type( $type, $arguments);
 }
 
-add_action('save_post', function($post_id){
-    $post = get_post($post_id);
-    $is_revision = wp_is_post_revision($post_id);
-
-    $field_name_age = 'questionAge';
-    $field_name_question_full = 'questionFullQuestion';
-
-    // Do not save meta for a revision or on autosave
-    if ( $post->post_type != 'question' || $is_revision )
-        return;
-
-    // Secure with nonce field check
-    if (isset($_REQUEST['kinderklets_nonce'])) {
-        check_admin_referer('kinderklets_nonce', 'kinderklets_nonce');
-    }
-
-        // Do not save meta if all fields are not present,
-    // like during a restore.
-    if( !isset($_POST[$field_name_age]) || !isset($_POST[$field_name_question_full]) )
-        return;
-
-    // Clean up data
-    $field_value_age = trim($_POST[$field_name_age]);
-    $field_value_question_full = trim($_POST[$field_name_question_full]);
-
-    // Do the saving and deleting
-    if( ! empty_str( $field_value_age ) ) {
-        update_post_meta($post_id, $field_name_age, $field_value_age);
-    } elseif( empty_str( $field_value_age ) ) {
-        delete_post_meta($post_id, $field_name_age);
-    }
-
-    if( ! empty_str( $field_value_question_full ) ) {
-        update_post_meta($post_id, $field_name_question_full, $field_value_question_full);
-    } elseif( empty_str( $field_value_question_full ) ) {
-        delete_post_meta($post_id, $field_name_question_full);
-    }
-});
+//add_action('save_post', function($post_id){
+//    $post = get_post($post_id);
+//    $is_revision = wp_is_post_revision($post_id);
+//
+//    $field_name_age = 'questionAge';
+//    $field_name_email = 'questionEmail';
+//
+//    // Do not save meta for a revision or on autosave
+//    if ( $post->post_type != 'question' || $is_revision )
+//        return;
+//
+//    // Secure with nonce field check
+//    if (isset($_REQUEST['kinderklets_nonce'])) {
+//        check_admin_referer('kinderklets_nonce', 'kinderklets_nonce');
+//    }
+//
+//        // Do not save meta if all fields are not present,
+//    // like during a restore.
+//    if( !isset($_POST[$field_name_age]) || !isset($_POST[$field_name_email]) )
+//        return;
+//
+//    // Clean up data
+//    $field_value_age = trim($_POST[$field_name_age]);
+//    $field_value_email = trim($_POST[$field_name_email]);
+//
+//    // Do the saving and deleting
+//    if( ! empty_str( $field_value_age ) ) {
+//        update_post_meta($post_id, $field_name_age, $field_value_age);
+//    } elseif( empty_str( $field_value_age ) ) {
+//        delete_post_meta($post_id, $field_name_age);
+//    }
+//
+//    if( ! empty_str( $field_value_email ) ) {
+//        update_post_meta($post_id, $field_name_email, $field_value_email);
+//    } elseif( empty_str( $field_value_email ) ) {
+//        delete_post_meta($post_id, $field_name_email);
+//    }
+//});
 
 
 /*

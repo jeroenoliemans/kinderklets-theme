@@ -52,7 +52,11 @@ jQuery(function($) {
                 questionPrivacy: document.querySelector('input[name="questionPrivacy"]:checked').value,
                 questionQuestion: document.getElementById('questionQuestion').value,
                 questionSex: document.querySelector('input[name="questionSex"]:checked').value,
-                questionAge: document.getElementById('questionAge').value
+                questionAge: document.getElementById('questionAge').value,
+                questionEmail: document.getElementById('questionEmail').value,
+                questionFamily: document.querySelector('#questionFamily').value,
+                questionSchool: document.querySelector('#questionSchool').value,
+                questionSiblings: document.querySelector('input[name="questionSiblings"]:checked').value,
             }
 
             //ajax request

@@ -189,11 +189,21 @@ function kinderklets_process_question_post() {
 
     //update custom fields
     $field_name_age = 'questionAge';
-    $field_name_question_full = 'questionFullQuestion';
+    $field_name_email = 'questionEmail';
+    $field_name_privacy = 'questionPrivacy';
+    $field_name_sex = 'questionSex';
+    $field_name_family = 'questionFamily';
+    $field_name_school = 'questionSchool';
+    $field_name_siblings = 'questionSiblings';
 
     if($post_id) {
         update_post_meta($post_id, $field_name_age, sanitize_text_field($_POST[data][questionAge]));
-        update_post_meta($post_id, $field_name_question_full, sanitize_text_field($_POST[data][questionQuestion]));
+        update_post_meta($post_id, $field_name_email, sanitize_text_field($_POST[data][questionEmail]));
+        update_post_meta($post_id, $field_name_privacy, sanitize_text_field($_POST[data][questionPrivacy]));
+        update_post_meta($post_id, $field_name_sex, sanitize_text_field($_POST[data][questionSex]));
+        update_post_meta($post_id, $field_name_family, sanitize_text_field($_POST[data][questionFamily]));
+        update_post_meta($post_id, $field_name_school, sanitize_text_field($_POST[data][questionSchool]));
+        update_post_meta($post_id, $field_name_siblings, sanitize_text_field($_POST[data][questionSiblings]));
     }
 
     wp_send_json_success($post_id);
