@@ -24,6 +24,17 @@ jQuery(function($) {
         errorTemplate: '<span></span>'
     });
 
+    //validation events
+    window.Parsley.on('field:error', function() {
+        this.$element.parents('.form-group').removeClass('has-success');
+        this.$element.parents('.form-group').addClass('has-danger');
+    });
+    window.Parsley.on('field:success', function() {
+        this.$element.parents('.form-group').removeClass('has-danger');
+        this.$element.parents('.form-group').addClass('has-success');
+    });
+
+
     function toggleLoader() {
         console.log('toggle loader');
     }
