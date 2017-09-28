@@ -1,3 +1,6 @@
+// imports
+require('script-loader!../js/kinderklets-libs.js');
+
 /**
  * Created by jeroen on 17-9-17.
  */
@@ -12,6 +15,14 @@ jQuery(function($) {
         var style = window.getComputedStyle(el);
         return (style.display === 'none')
     }
+
+    // set up form validation
+    var $questionForm = jQuery('#user-question').parsley({
+        successClass: 'has-success',
+        errorClass: 'has-danger',
+        errorsWrapper: '<span class=\"help-block\"></span>',
+        errorTemplate: '<span></span>'
+    });
 
     function toggleLoader() {
         console.log('toggle loader');
@@ -43,24 +54,30 @@ jQuery(function($) {
 
     //setup ajax handler for form
     function setupAjax() {
-        userSubmitButton = document.getElementById('questionSubmit')
+        var questionForm = document.getElementById('user-question')
 
-        userSubmitButton.addEventListener('click', function (event) {
-            event.preventDefault();
+        questionForm.addEventListener('submit', function (event) {
 
-            var formData = {
-                questionPrivacy: document.querySelector('input[name="questionPrivacy"]:checked').value,
-                questionQuestion: document.getElementById('questionQuestion').value,
-                questionSex: document.querySelector('input[name="questionSex"]:checked').value,
-                questionAge: document.getElementById('questionAge').value,
-                questionEmail: document.getElementById('questionEmail').value,
-                questionFamily: document.querySelector('#questionFamily').value,
-                questionSchool: document.querySelector('#questionSchool').value,
-                questionSiblings: document.querySelector('input[name="questionSiblings"]:checked').value,
+            $questionForm.validate();
+
+            // if this form is valid
+            if ($questionForm.isValid()) {
+                var formData = {
+                    questionPrivacy: document.querySelector('input[name="questionPrivacy"]:checked').value,
+                    questionQuestion: document.getElementById('questionQuestion').value,
+                    questionSex: document.querySelector('input[name="questionSex"]:checked').value,
+                    questionAge: document.getElementById('questionAge').value,
+                    questionEmail: document.getElementById('questionEmail').value,
+                    questionFamily: document.querySelector('#questionFamily').value,
+                    questionSchool: document.querySelector('#questionSchool').value,
+                    questionSiblings: document.querySelector('input[name="questionSiblings"]:checked').value,
+                }
+
+                //ajax request
+                adminAjaxRequest(formData, 'kinderklets_process_question_post');
             }
 
-            //ajax request
-            adminAjaxRequest(formData, 'kinderklets_process_question_post');
+            event.preventDefault();
         });
     }
 
@@ -76,7 +93,7 @@ jQuery(function($) {
 
     menuToggle.addEventListener('click', toggleMainMenu);
 
-    if (jQuery('#user-post').length > 0) {
+    if (jQuery('#user-question').length > 0) {
         setupAjax();
     }
 });

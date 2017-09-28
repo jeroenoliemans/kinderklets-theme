@@ -25,29 +25,29 @@ get_header(); ?>
 			?>
 
             <!-- start of the question form-->
-            <form action="" id="user-post">
+            <form action="" id="user-question" data-parsley-validate="">
                 <?php wp_nonce_field('kinderklets_nonce', 'kinderklets_nonce'); ?>
                 <fieldset class="form-group">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPublic" value="public">
+                            <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPublic" value="public" data-parsley-required>
                             Mijn vraag en het antwoord mogen worden gebruikt door kinderklets.nl .
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPrivate" value="private">
+                            <input type="radio" class="form-check-input" name="questionPrivacy" id="questionIsPrivate" value="private" data-parsley-required>
                             Mijn vraag en het antwoord zijn priv&eacute; en mogen niet worden gebruikt door kinderklets.nl, ik betaal voor het advies/antwoord &euro;19,95 .
                         </label>
                     </div>
                 </fieldset>
                 <div class="form-group">
-                    <textarea class="form-control" id="questionQuestion" rows="4" placeholder="Stel je vraag hier..."></textarea>
+                    <textarea class="form-control" id="questionQuestion" rows="4" placeholder="Stel je vraag hier..." data-parsley-required></textarea>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-md-12 col-form-label" for="questionEmail">Email adres</label>
                     <div class="col-lg-9 col-md-12">
-                        <input type="email" class="form-control" id="questionEmail" aria-describedby="emailHelp" placeholder="email adres">
+                        <input type="email" class="form-control" id="questionEmail" aria-describedby="emailHelp" placeholder="email adres" data-parsley-required>
                         <small id="emailHelp" class="form-text text-muted">Om je eventueel een extra vraag te stellen, om tot een goed antwoord te komen.</small>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ get_header(); ?>
                 <div class="form-group row">
                     <label for="questionAge" class="col-lg-3 col-md-12 col-form-label">Leeftijd kind</label>
                     <div class="col-lg-9 col-md-12">
-                        <input class="form-control" type="number" value="" id="questionAge">
+                        <input class="form-control" type="number" value="" id="questionAge"  data-parsley-required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -69,12 +69,12 @@ get_header(); ?>
                     <div class="col-lg-9 col-md-12">
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexMale" value="male"> mannelijk
+                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexMale" value="male" data-parsley-required> mannelijk
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexFemale" value="female"> vrouwelijk
+                                <input class="form-check-input" type="radio" name="questionSex" id="questionSexFemale" value="female" data-parsley-required> vrouwelijk
                             </label>
                         </div>
                     </div>
@@ -82,7 +82,8 @@ get_header(); ?>
                 <div class="form-group row">
                     <label class="col-lg-3 col-md-12 col-form-label" for="questionSchool">Schooltype</label>
                     <div class="col-lg-9 col-md-12">
-                        <select class="form-control" id="questionSchool">
+                        <select class="form-control" id="questionSchool" data-parsley-required>
+                            <option value="">Maak een keuze</option>
                             <option value="regulier">Regulier</option>
                             <option value="speciaal">Speciaal</option>
                             <option value="groep">Groep</option>
@@ -92,7 +93,8 @@ get_header(); ?>
                 <div class="form-group row">
                     <label class="col-lg-3 col-md-12 col-form-label" for="questionFamily">Opgroeiend in</label>
                     <div class="col-lg-9 col-md-12">
-                        <select class="form-control" id="questionFamily">
+                        <select class="form-control" id="questionFamily" data-parsley-required>
+                            <option value="">Maak een keuze</option>
                             <option value="1 ouder gzin">&Eacute;&eacute;n ouder gezin</option>
                             <option value="beide ouders">Beide ouders gezin</option>
                             <option value="Samengesteld gezin">Samengesteld gezin</option>
@@ -105,12 +107,12 @@ get_header(); ?>
                     <div class="col-lg-9 col-md-12">
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsNone" value="enig kind"> enig kind
+                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsNone" value="enig kind" data-parsley-required> enig kind
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsMultiple" value="niet enig kind"> &eacute;&eacute;n of meerdere broers zussen
+                                <input class="form-check-input" type="radio" name="questionSiblings" id="questionSiblingsMultiple" value="niet enig kind" data-parsley-required> &eacute;&eacute;n of meerdere broers zussen
                             </label>
                         </div>
                     </div>
