@@ -10,6 +10,8 @@ jQuery(function($) {
     var menuToggle = document.querySelector('.js-menu-toggle');
     var mainNavigation = document.getElementById('site-navigation');
     var menuVisible = false;
+    var isPrivate;
+    var bogusEmail = 'public@public.foo';
 
     function isHidden(el) {
         var style = window.getComputedStyle(el);
@@ -35,11 +37,58 @@ jQuery(function($) {
     });
 
 
-    function toggleLoader() {
-        console.log('toggle loader');
+    function hideLoader() {
+        var loader = document.getElementById('kkLoader');
+        loader.classList.remove('is-block');
+        loader.classList.add('is-none');
+    }
+
+    function showLoader() {
+        var loader = document.getElementById('kkLoader');
+        loader.classList.remove('is-none');
+        loader.classList.add('is-block');
+    }
+
+
+    function toggleFormDisplay(event) {
+        var submitButton = document.getElementById('questionSubmit');
+        var formEmail = document.getElementById('forGroupEmail');
+        var emailField = document.getElementById('questionEmail');
+
+        isPrivate = document.querySelector('input[name="questionPrivacy"]:checked').value === 'private';
+
+        if(isPrivate) {
+            submitButton.innerText = 'Naar de betaalpagina';
+            emailField.value = '';
+            formEmail.classList.remove('is-none');
+            formEmail.classList.add('is-flex');
+        } else {
+            submitButton.innerText = 'Verstuur je vraag';
+            emailField.value = bogusEmail;
+            formEmail.classList.remove('is-flex');
+            formEmail.classList.add('is-none');
+        }
+    }
+
+    function performSuccesAction(postId) {
+        alert(postId);
+
+        var wpPage = document.getElementById('wordpressPage');
+        var questionForm = document.getElementById('user-question');
+        var thankYouSection = document.getElementById('thankyouSection');
+
+        if(isPrivate) {
+            console.log('redirect to iDeal page');
+        } else {
+            wpPage.classList.add('is-none');
+            questionForm.classList.add('is-none');
+            thankYouSection.classList.remove('is-none');
+            thankYouSection.classList.add('is-block');
+        }
     }
 
     function adminAjaxRequest(formdata, action) {
+
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -52,7 +101,7 @@ jQuery(function($) {
         })
             .done(function (response) {
                 if (response.success) {
-                    alert('succes');
+                    performSuccesAction(response.success.data);
                 } else {
                     alert('fail');
                 }
@@ -60,12 +109,12 @@ jQuery(function($) {
             .fail(function (error) {
 
             })
-            .always(toggleLoader);
+            .always(hideLoader);
     }
 
     //setup ajax handler for form
     function setupAjax() {
-        var questionForm = document.getElementById('user-question')
+        var questionForm = document.getElementById('user-question');
 
         questionForm.addEventListener('submit', function (event) {
 
@@ -82,10 +131,12 @@ jQuery(function($) {
                     questionFamily: document.querySelector('#questionFamily').value,
                     questionSchool: document.querySelector('#questionSchool').value,
                     questionSiblings: document.querySelector('input[name="questionSiblings"]:checked').value,
-                }
+                };
 
                 //ajax request
                 adminAjaxRequest(formData, 'kinderklets_process_question_post');
+
+                showLoader();
             }
 
             event.preventDefault();
@@ -104,7 +155,16 @@ jQuery(function($) {
 
     menuToggle.addEventListener('click', toggleMainMenu);
 
+    function setupFormEvents() {
+        var formPrivateRadios = document.querySelectorAll('input[name="questionPrivacy"]');
+
+        for (var i = 0; i < formPrivateRadios.length; i++) {
+            formPrivateRadios[i].addEventListener('change', toggleFormDisplay);
+        }
+    }
+
     if (jQuery('#user-question').length > 0) {
         setupAjax();
+        setupFormEvents();
     }
 });

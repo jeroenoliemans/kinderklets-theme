@@ -32,6 +32,10 @@
     </div>
 </footer>
 
+<div id="kkLoader" class="kk-loader is-none">
+    <i class="icon-spinning icon-loader icon-refresh-cw"></i>
+</div>
+
 
 <?php wp_footer(); ?>
 
