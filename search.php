@@ -9,8 +9,8 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main">
+    <div id="primary" class="col-md-8 content-area">
+        <main id="main" class="site-main">
 
 		<?php
 		if ( have_posts() ) : ?>
@@ -18,7 +18,7 @@ get_header(); ?>
 			<header class="page-header">
 				<h1 class="page-title"><?php
 					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'kinderklets' ), '<span>' . get_search_query() . '</span>' );
+					printf( esc_html__( 'Zoekresultaten voor: %s', 'kinderklets' ), '<span>' . get_search_query() . '</span>' );
 				?></h1>
 			</header><!-- .page-header -->
 
@@ -44,8 +44,11 @@ get_header(); ?>
 		endif; ?>
 
 		</main><!-- #main -->
-	</section><!-- #primary -->
+	</div><!-- #primary -->
 
-<?php
-get_sidebar();
-get_footer();
+        <div class="col-md-4">
+            <?php get_sidebar(); ?>
+        </div>
+
+
+        <?php get_footer(); ?>

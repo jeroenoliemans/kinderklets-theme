@@ -14,4 +14,9 @@
 .kk-logo {
   width: 200px;
   height: 83px;
+
+  @media only screen and (min-width: $md-768) {
+    width: 241px;
+    height: 100px;
+  }
 }

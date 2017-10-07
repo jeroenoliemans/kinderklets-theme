@@ -1,0 +1,27 @@
+.kk-question-list {
+  list-style: none;
+  padding: 0;
+}
+
+.kk-question-list-item {
+  margin-bottom: $kk-space-half;
+
+  i {
+    margin-right: $kk-space-half;
+  }
+}
+
+.kk-search-listing {
+  margin-bottom: $kk-space;
+  position: relative;
+
+  article {
+    padding-left: $kk-space-double;
+  }
+}
+
+.kk-search-listing-bullet {
+  position: absolute;
+  top: 10px;
+  left: 0;
+}

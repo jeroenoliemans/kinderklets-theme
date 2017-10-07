@@ -57,6 +57,7 @@ function kinderklets_custom_post_type($customLabels) {
         'menu_position'       => 5,
         'can_export'          => true,
         'has_archive'         => true,
+        'taxonomies'          => array( 'category' ),
         'exclude_from_search' => false,
         'publicly_queryable'  => true,
         'capability_type'     => 'page',

@@ -12,7 +12,13 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 }
 ?>
 
-<aside id="secondary" class="widget-area">
+<aside id="secondary" class="widget-area kk-aside">
+    <div class="kk-profile">
+        <img src="/public_html/wp-content/themes/kinderklets/assets/images/debbie-profile.png" alt="Debbie Brugman" class="kk-profile-image rounded-circle">
+        <p class="kk-intro kk-intro-small">Debbie Brugman, GZ-Psycholoog (voor kinderen)</p>
+    </div>
     <h2>Zoek je vraag</h2>
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+    <div class="kk-content-box">
+	    <?php dynamic_sidebar( 'sidebar-1' ); ?>
+    </div>
 </aside><!-- #secondary -->

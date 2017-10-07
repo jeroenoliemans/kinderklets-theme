@@ -1,0 +1,26 @@
+.kk-profile {
+  text-align: center;
+  border-bottom: 1px #AAC789 solid;
+  border-bottom-left-radius: 50% 1%;
+  border-bottom-right-radius: 50% 1%;
+  margin-bottom: 2rem;
+}
+
+.kk-profile-image {
+  width: 40%;
+  height: auto;
+  border: 3px solid $kk-green;
+  max-width: 200px;
+  margin-bottom: $kk-space-half;
+
+  @media only screen and (min-width: $md-768) {
+    width: 70%;
+    height: auto;
+  }
+}
+
+.kk-profile-text {
+  font-family: 'Annie Use Your Telescope', cursive;
+  color: $kk-green;
+  line-height: 1.2;
+}

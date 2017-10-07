@@ -212,4 +212,16 @@ function kinderklets_process_question_post() {
 add_action('wp_ajax_kinderklets_process_question_post', 'kinderklets_process_question_post');
 add_action('wp_ajax_nopriv_kinderklets_process_question_post', 'kinderklets_process_question_post');
 
-
+// make sure that the questions get displayed on the categorie pages
+add_filter('pre_get_posts', 'query_post_type');
+function query_post_type($query) {
+    if( is_category() ) {
+        $post_type = get_query_var('post_type');
+        if($post_type)
+            $post_type = $post_type;
+        else
+            $post_type = array('nav_menu_item', 'post', 'question'); // don't forget nav_menu_item to allow menus to work!
+        $query->set('post_type',$post_type);
+        return $query;
+    }
+}
