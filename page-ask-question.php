@@ -130,7 +130,8 @@ get_header(); ?>
             <section class="is-none" id="thankyouSection">
                 <h1>Bedankt</h1>
                 <p>Bedankt voor je vraag, binnen 2 werkdagen verschijnt je vraag op de website</p>
-                <p>Je vraag zal dan <a href="">hier</a> te lezen zijn.</p>
+                <p>Je vraag zal dan over 2 werkdagen hier <a class="text-link" id="futureQuestionLink" href="">hier</a> te lezen zijn. Kopieer deze link of schrijf het op.</p>
+
             </section>
 
 

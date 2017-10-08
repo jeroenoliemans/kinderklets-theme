@@ -90,6 +90,14 @@ function kinderklets_custom_fields(WP_Post $post) {
 
         ?>
         <table class="form-table">
+            <?php if(get_post_meta($post->ID, $field_name_privacy, true) === 'private'): ?>
+            <tr>
+                <th>
+                    <label>E-mail de klant</label>
+                </th>
+                <td><input type="button" name="emailPrivateClient" id="emailPrivateClient" class="button button-primary button-large" value="E-mail de klant"></td>
+            </tr>
+            <?php endif; ?>
             <tr>
                 <th>
                     <label>Privacy / betaald</label>
@@ -106,7 +114,7 @@ function kinderklets_custom_fields(WP_Post $post) {
                 <th>
                     <label>E-mailadres</label>
                 </th>
-                <td><?php echo get_post_meta($post->ID, $field_name_email, true); ?></td>
+                <td id="customerEmailAddress"><?php echo get_post_meta($post->ID, $field_name_email, true); ?></td>
             </tr>
             <tr>
                 <th>

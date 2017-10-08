@@ -20,3 +20,13 @@ function kinderklets_all_scriptsandstyles() {
 }
 
 add_action( 'wp_enqueue_scripts', 'kinderklets_all_scriptsandstyles' );
+
+function kinderklets_admin_scripts() {
+    wp_register_script( 'custom-admin', get_stylesheet_directory_uri() . '/js/kinderklets-wp-admin.js', array('jquery'), true, true);
+    wp_enqueue_script('custom-admin');
+    wp_localize_script( 'custom-admin', 'kinderkletsData', array(
+        'adminAjax' =>  admin_url('admin-ajax.php')
+    ));
+}
+
+add_action( 'admin_enqueue_scripts','kinderklets_admin_scripts');

@@ -29,6 +29,7 @@ get_header(); ?>
             <div class="kk-content-box">
                 <h2>De laatste vragen</h2>
                 <?php echo do_shortcode('[getlatestquestion]'); ?>
+                <a class="btn btn-primary" href="<?php echo get_post_type_archive_link( 'question' ); ?>">Alle vragen</a>
 
                 <?php
                 if ( have_posts() ) :

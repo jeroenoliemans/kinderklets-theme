@@ -225,3 +225,32 @@ function query_post_type($query) {
         return $query;
     }
 }
+
+// email from wp-admin function
+function kinderklets_send_email($email_data){
+    //Your submission processing
+    $to = $email_data[emailAddress];
+    $subject = 'Antwoord op je vraag via Kinderklets.nl';
+    $message = $email_data[question];
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+
+    wp_mail( $to, $subject, $message, $headers );
+}
+
+
+function kinderklets_email_question_answer() {
+    if(! check_ajax_referer('kinderklets_nonce', 'security')) {
+        wp_send_json_error('security check failed');
+    }
+
+    $email_data = array(
+        'question' => sanitize_text_field($_POST[data][question]),
+        'emailAddress' => sanitize_text_field($_POST[data][emailAddress])
+    );
+
+    kinderklets_send_email($email_data);
+
+    wp_send_json_success($email_data[question]);
+}
+
+add_action('wp_ajax_kinderklets_email_question_answer', 'kinderklets_email_question_answer');

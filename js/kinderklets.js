@@ -49,6 +49,14 @@ jQuery(function($) {
         loader.classList.add('is-block');
     }
 
+    function setFutureQuestionLink() {
+        var futureLink = 'https://www.kinderklets.nl/index.php?p=' + sessionStorage.getItem('kk-questionPostId');
+        var futureQuestionLink = document.getElementById('futureQuestionLink');
+
+        // set href and linkText
+        futureQuestionLink.href = futureLink;
+        futureQuestionLink.innerHTML = futureLink
+    }
 
     function toggleFormDisplay(event) {
         var submitButton = document.getElementById('questionSubmit');
@@ -71,7 +79,8 @@ jQuery(function($) {
     }
 
     function performSuccesAction(postId) {
-        alert(postId);
+        // set session for link building in thankyou page
+        sessionStorage.setItem('kk-questionPostId', postId);
 
         var wpPage = document.getElementById('wordpressPage');
         var questionForm = document.getElementById('user-question');
@@ -82,6 +91,7 @@ jQuery(function($) {
         } else {
             wpPage.classList.add('is-none');
             questionForm.classList.add('is-none');
+            setFutureQuestionLink();
             thankYouSection.classList.remove('is-none');
             thankYouSection.classList.add('is-block');
         }
@@ -101,7 +111,7 @@ jQuery(function($) {
         })
             .done(function (response) {
                 if (response.success) {
-                    performSuccesAction(response.success.data);
+                    performSuccesAction(response.data);
                 } else {
                     alert('fail');
                 }
